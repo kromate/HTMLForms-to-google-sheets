@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML forms to google sheet</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+        <div class="flex items-center h-screen w-full bg-orange-100">
+      <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+        <h1 class="block w-full text-center text-grey-darkest mb-6">Feedback</h1>
+        <form class="mb-4 flex flex-wrap justify-between" id="form">
+  
+       
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="email">Name</label>
+            <input class="bg-green-100 px-2 py-1 outline-none" type="text" name="Name" id="email">
+          </div>
+          <div class="flex flex-col w-full mb-4">
+            <label class="field-label" for="password">Message</label>
+            <textarea class="bg-green-100 px-2 py-1 outline-none" type="text" name="Message" id="Message"></textarea>
+          </div>
+          <button class="bg-orange-300 px-3 py-1 text-white mx-auto" type="submit">Submit</button>
+        </form>
+    </div>
+  </div>
+
+</body>
+
+<script>
+        const form = document.querySelector("#form")
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwG9vCMBREFM4suhSiTdVPFu7-F-6JclKyZGGuKjFS-dqaZT6kKXS6r_15kub3YH2R5yw/exec'
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => { alert('Success!', response) })
+        .catch(error => alert('Error!', error.message))
+    })
+</script>
+</html>
