@@ -35,6 +35,8 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault()
+
+      console.log(form)
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => { alert('Success!', response) })
         .catch(error => alert('Error!', error.message))
