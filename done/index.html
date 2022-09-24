@@ -49,8 +49,11 @@
   form.addEventListener('submit', e => {
     e.preventDefault()
 
-    console.log(form)
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    const responseBody = new FormData(form)
+    console.log(responseBody.getAll("TRENDS").join(""));
+    responseBody.set('TRENDS', "omo")
+    responseBody.append("TRENDS", 'Testing')
+    fetch(scriptURL, { method: 'POST', body: responseBody })
       .then(response => { alert('Success!', response) })
       .catch(error => alert('Error!', error.message))
   })
