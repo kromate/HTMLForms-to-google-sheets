@@ -50,9 +50,8 @@
     e.preventDefault()
 
     const responseBody = new FormData(form)
-    console.log(responseBody.getAll("TRENDS").join(""));
-    responseBody.set('TRENDS', "omo")
-    responseBody.append("TRENDS", 'Testing')
+    const TrendBody = responseBody.getAll("TRENDS").join(" ")
+    responseBody.set('TRENDS', TrendBody)
     fetch(scriptURL, { method: 'POST', body: responseBody })
       .then(response => { alert('Success!', response) })
       .catch(error => alert('Error!', error.message))
